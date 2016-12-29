@@ -1,0 +1,19 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+{% block title %}
+Homepage - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h1>Homepage</h1>
+
+  {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endfor %}
+
+  <h2>Last advert</h2>
+  {{ render(controller("OCPlatformBundle:Advert:menu", {'limit': 3})) }}
+
+{% endblock %}
